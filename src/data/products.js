@@ -272,7 +272,7 @@ const products = [
     discountPercent: 40,
     rating: 4.3,
     reviews: 89,
-    image: "/images/beauty/lipstick.jpg"
+    image: "/images/beauty/Lakme Matte Lipstick.jpg"
   },
   {
     id: 25,
@@ -283,7 +283,7 @@ const products = [
     discountPercent: 25,
     rating: 4.4,
     reviews: 102,
-    image: "/images/beauty/nivea.jpg"
+    image: "/images/beauty/Nivea Soft Skin Cream.jpg"
   },
 
   // -------------------- TOYS --------------------
@@ -307,7 +307,7 @@ const products = [
     discountPercent: 35,
     rating: 4.5,
     reviews: 188,
-    image: "/images/toys/rccar.jpg"
+    image: "/images/toys/Remote Control Racing Car.jpg"
   },
   {
     id: 28,
@@ -318,7 +318,7 @@ const products = [
     discountPercent: 33,
     rating: 4.6,
     reviews: 77,
-    image: "/images/toys/teddy3ft.jpg"
+    image: "/images/toys/Soft Teddy Bear 3ft.jpg"
   },
 
   // -------------------- EXTRA ELECTRONICS --------------------
@@ -331,7 +331,7 @@ const products = [
     discountPercent: 25,
     rating: 4.7,
     reviews: 201,
-    image: "/images/electronics/sonyheadphones.jpg"
+    image: "/images/electronics/Sony Noise Cancelling Headphones.jpg"
   },
   {
     id: 30,
@@ -342,7 +342,7 @@ const products = [
     discountPercent: 27,
     rating: 4.5,
     reviews: 150,
-    image: "/images/electronics/lenovotab.jpg"
+    image: "/images/electronics/Lenovo Tablet M10.jpg"
   }
 ];
 
