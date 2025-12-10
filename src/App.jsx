@@ -10,6 +10,9 @@ import Checkout from "./pages/Checkout";
 import Orders from "./pages/Orders";
 import OrderConfirmation from "./pages/OrderConfirmation";
 
+// ⭐ NEW IMPORT (VERY IMPORTANT)
+import ProductDetails from "./pages/ProductDetails";
+
 export default function App() {
   return (
     <Routes>
@@ -31,11 +34,12 @@ export default function App() {
       <Route path="/checkout" element={<Checkout />} />
 
       {/* Orders Page */}
-      <Route path="/orders" element={<Orders />} />  {/* ✅ MUST be here */}
+      <Route path="/orders" element={<Orders />} />
 
       {/* Order Confirmation */}
       <Route path="/order-confirm" element={<OrderConfirmation />} />
 
+      {/* ⭐ PRODUCT DETAILS PAGE ROUTE (NEWLY ADDED) */}
       <Route path="/product/:id" element={<ProductDetails />} />
 
     </Routes>
