@@ -36,6 +36,8 @@ export default function App() {
       {/* Order Confirmation */}
       <Route path="/order-confirm" element={<OrderConfirmation />} />
 
+      <Route path="/product/:id" element={<ProductDetails />} />
+
     </Routes>
   );
 }

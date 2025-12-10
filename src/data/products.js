@@ -1,5 +1,5 @@
 const products = [
-  // ------------------------------------------------ MOBILES ------------------------------------------------
+  //  MOBILES
   {
     id: 1,
     name: "iPhone 17 Pro Max 5G",
@@ -10,7 +10,6 @@ const products = [
     rating: 4.3,
     reviews: 234,
     image: "/images/mobiles/Iphone 17 pro max 5G.jpg",
-
     images: [
       "/images/mobiles/Iphone17/1.jpg",
       "/images/mobiles/Iphone17/2.jpg",
@@ -36,7 +35,6 @@ const products = [
     rating: 4.8,
     reviews: 412,
     image: "/images/mobiles/Samsung Galaxy S23 Ultra.jpg",
-
     images: [
       "/images/mobiles/S23/1.jpg",
       "/images/mobiles/S23/2.jpg",
@@ -62,7 +60,6 @@ const products = [
     rating: 4.5,
     reviews: 310,
     image: "/images/mobiles/Realme Narzo 60 Pro.jpg",
-
     images: [
       "/images/mobiles/Narzo60/1.jpg",
       "/images/mobiles/Narzo60/2.jpg"
@@ -77,8 +74,7 @@ const products = [
     ]
   },
 
-  // ------------------------------------------------ ELECTRONICS ------------------------------------------------
-
+  //  ELECTRONICS
   {
     id: 4,
     name: "VU Ultra HD TV 50",
@@ -89,7 +85,6 @@ const products = [
     rating: 4.5,
     reviews: 121,
     image: "/images/electronics/VU Ultra HD TV 50.jpg",
-
     images: [
       "/images/electronics/VUTV/1.jpg",
       "/images/electronics/VUTV/2.jpg"
@@ -114,7 +109,6 @@ const products = [
     rating: 4.2,
     reviews: 542,
     image: "/images/electronics/airpods.jpg",
-
     images: [
       "/images/electronics/airpods/1.jpg",
       "/images/electronics/airpods/2.jpg"
@@ -139,7 +133,6 @@ const products = [
     rating: 4.4,
     reviews: 87,
     image: "/images/electronics/HP Nitro Gaming Laptop.jpg",
-
     images: [
       "/images/electronics/Nitro/1.jpg",
       "/images/electronics/Nitro/2.jpg"
@@ -164,7 +157,6 @@ const products = [
     rating: 4.1,
     reviews: 254,
     image: "/images/electronics/Boat Bluetooth Speaker Mini.jpg",
-
     images: [
       "/images/electronics/BoatMini/1.jpg",
       "/images/electronics/BoatMini/2.jpg"
@@ -189,7 +181,6 @@ const products = [
     rating: 4.3,
     reviews: 204,
     image: "/images/electronics/Apple Smart Watch Active.jpg",
-
     images: [
       "/images/electronics/Watch/1.jpg",
       "/images/electronics/Watch/2.jpg"
@@ -214,7 +205,6 @@ const products = [
     rating: 4.0,
     reviews: 73,
     image: "/images/electronics/Dell Laptop Cooling Stand.jpg",
-
     images: [
       "/images/electronics/Cooler/1.jpg",
       "/images/electronics/Cooler/2.jpg"
@@ -239,7 +229,6 @@ const products = [
     rating: 4.4,
     reviews: 65,
     image: "/images/electronics/Hp USB Mechanical Keyboard.jpg",
-
     images: [
       "/images/electronics/Keyboard/1.jpg",
       "/images/electronics/Keyboard/2.jpg"
@@ -254,7 +243,7 @@ const products = [
     ]
   },
 
-  // ------------------------------------------------ GROCERIES ------------------------------------------------
+  //  GROCERIES 
 
   {
     id: 11,
@@ -266,7 +255,6 @@ const products = [
     rating: 4.1,
     reviews: 193,
     image: "/images/groceries/Basmati Rice 10kg.jpg",
-
     images: [
       "/images/groceries/Rice/1.jpg",
       "/images/groceries/Rice/2.jpg"
@@ -291,7 +279,6 @@ const products = [
     rating: 4.0,
     reviews: 211,
     image: "/images/groceries/Sunflower Oil 1L.jpg",
-
     images: [
       "/images/groceries/Oil/1.jpg"
     ],
@@ -315,7 +302,6 @@ const products = [
     rating: 4.3,
     reviews: 132,
     image: "/images/groceries/Daily Milk Pocket (Pack of 2).jpg",
-
     images: [
       "/images/groceries/Milk/1.jpg"
     ],
@@ -338,7 +324,6 @@ const products = [
     rating: 4.1,
     reviews: 89,
     image: "/images/groceries/Crystal Sugar 5kg.jpg",
-
     images: [
       "/images/groceries/Sugar/1.jpg"
     ],
@@ -360,7 +345,6 @@ const products = [
     rating: 4.5,
     reviews: 141,
     image: "/images/groceries/Tata Organic Green Tea 250g.jpg",
-
     images: [
       "/images/groceries/Tea/1.jpg"
     ],
@@ -372,7 +356,7 @@ const products = [
     ]
   },
 
-  // ------------------------------------------------ FASHION ------------------------------------------------
+  //  FASHION 
 
   {
     id: 16,
@@ -384,7 +368,6 @@ const products = [
     rating: 4.2,
     reviews: 301,
     image: "/images/fashion/Puma Men Solid T-Shirt.jpg",
-
     images: [
       "/images/fashion/Shirt/1.jpg"
     ],
@@ -406,7 +389,6 @@ const products = [
     rating: 4.4,
     reviews: 179,
     image: "/images/fashion/Women Kurti Set.jpg",
-
     images: [
       "/images/fashion/Kurti/1.jpg"
     ],
@@ -428,7 +410,6 @@ const products = [
     rating: 4.3,
     reviews: 147,
     image: "/images/fashion/Adidas Men Running Shoes.jpg",
-
     images: [
       "/images/fashion/Shoes/1.jpg"
     ],
@@ -450,7 +431,6 @@ const products = [
     rating: 4.2,
     reviews: 96,
     image: "/images/fashion/Gucci Classic Handbag.jpg",
-
     images: [
       "/images/fashion/Bag/1.jpg"
     ],
@@ -464,15 +444,14 @@ const products = [
 
   {
     id: 20,
-    name: "Men's Winter Jacket",
+    name: "Mens Winter Jacket",
     category: "Fashion",
     price: 1999,
     originalPrice: 2999,
     discountPercent: 33,
     rating: 4.6,
     reviews: 188,
-    image: "/images/fashion/Men's Winter Jacket.jpg",
-
+    image: "/images/fashion/Mens Winter Jacket.jpg",
     images: [
       "/images/fashion/Jacket/1.jpg"
     ],
@@ -484,7 +463,7 @@ const products = [
     ]
   },
 
-  // ------------------------------------------------ HOME ------------------------------------------------
+  //  HOME 
 
   {
     id: 21,
@@ -496,7 +475,6 @@ const products = [
     rating: 4.3,
     reviews: 112,
     image: "/images/home/Royal Home Soft Cotton Bedsheet.jpg",
-
     images: [
       "/images/home/Bedsheet/1.jpg"
     ],
@@ -518,7 +496,6 @@ const products = [
     rating: 4.2,
     reviews: 88,
     image: "/images/home/Prestige Kitchen Non-stick Pan.jpg",
-
     images: [
       "/images/home/Pan/1.jpg"
     ],
@@ -539,8 +516,7 @@ const products = [
     discountPercent: 28,
     rating: 4.4,
     reviews: 132,
-    image: "/images/home/Luxury Floor Carpet Larg.jpg",
-
+    image: "/images/home/Luxury Floor Carpet Large.jpg",
     images: [
       "/images/home/Carpet/1.jpg"
     ],
@@ -552,7 +528,7 @@ const products = [
     ]
   },
 
-  // ------------------------------------------------ BEAUTY ------------------------------------------------
+  //  BEAUTY 
 
   {
     id: 24,
@@ -564,7 +540,6 @@ const products = [
     rating: 4.3,
     reviews: 89,
     image: "/images/beauty/Lakme Matte Lipstick.jpg",
-
     images: [
       "/images/beauty/Lipstick/1.jpg"
     ],
@@ -586,7 +561,6 @@ const products = [
     rating: 4.4,
     reviews: 102,
     image: "/images/beauty/Nivea Soft Skin Cream.jpg",
-
     images: [
       "/images/beauty/Cream/1.jpg"
     ],
@@ -598,7 +572,7 @@ const products = [
     ]
   },
 
-  // ------------------------------------------------ TOYS ------------------------------------------------
+  //  TOYS 
 
   {
     id: 26,
@@ -610,7 +584,6 @@ const products = [
     rating: 4.4,
     reviews: 99,
     image: "/images/toys/Shumee Kids Learning Toy Set.jpg",
-
     images: [
       "/images/toys/ToySet/1.jpg"
     ],
@@ -632,7 +605,6 @@ const products = [
     rating: 4.5,
     reviews: 188,
     image: "/images/toys/Remote Control Racing Car.jpg",
-
     images: [
       "/images/toys/Car/1.jpg"
     ],
@@ -654,7 +626,6 @@ const products = [
     rating: 4.6,
     reviews: 77,
     image: "/images/toys/Soft Teddy Bear 3ft.jpg",
-
     images: [
       "/images/toys/Teddy/1.jpg"
     ],
@@ -666,7 +637,7 @@ const products = [
     ]
   },
 
-  // ------------------------------------------- EXTRA ELECTRONICS -------------------------------------------
+  //  ELECTRONICS 
 
   {
     id: 29,
@@ -678,7 +649,6 @@ const products = [
     rating: 4.7,
     reviews: 201,
     image: "/images/electronics/Sony Noise Cancelling Headphones.jpg",
-
     images: [
       "/images/electronics/Sony/1.jpg"
     ],
@@ -700,7 +670,6 @@ const products = [
     rating: 4.5,
     reviews: 150,
     image: "/images/electronics/Lenovo Tablet M10.jpg",
-
     images: [
       "/images/electronics/Tablet/1.jpg"
     ],
