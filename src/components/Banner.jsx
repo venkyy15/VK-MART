@@ -12,7 +12,7 @@ export default function Banner() {
       <div className="d-flex flex-wrap gap-2">
         <button className="btn vk-btn-primary btn-sm">Shop Now</button>
         <button className="btn btn-outline-success btn-sm border-0">
-          View Today’s Offers →
+          View Today's Offers →
         </button>
       </div>
     </section>
