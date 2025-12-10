@@ -224,7 +224,7 @@ const products = [
     discountPercent: 33,
     rating: 4.6,
     reviews: 188,
-    image: "/images/fashion/winterjacket.jpg"
+    image: "/images/fashion/Men's Winter Jacket.jpg"
   },
 
   // -------------------- HOME --------------------
