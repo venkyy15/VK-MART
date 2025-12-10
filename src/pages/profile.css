@@ -1,0 +1,194 @@
+/* WRAPPER */
+.profile-wrapper {
+  max-width: 1100px;
+  margin: auto;
+  padding: 20px;
+  display: flex;
+  gap: 25px;
+  align-items: flex-start;
+}
+
+/* PROFILE CARD */
+.profile-card {
+  flex: 1;
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  text-align: center;
+  min-width: 280px;
+}
+
+.profile-image {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+/* ADDRESS CARD */
+.address-card {
+  flex: 2;
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  position: relative;
+  min-width: 300px;
+}
+
+/* CLOSE BUTTON */
+.close-btn {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: #ff4d4d;
+  border: none;
+  color: white;
+  font-size: 20px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* FORM TITLE */
+.address-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+/* LABEL */
+label {
+  margin-top: 12px;
+  font-weight: 600;
+  display: block;
+}
+
+/* INPUT */
+input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+/* ROWS */
+.row {
+  display: flex;
+  gap: 15px;
+  width: 100%;
+}
+
+.col {
+  flex: 1;
+}
+
+/* ADDRESS TYPE */
+.address-type-box {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.address-type {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #aaa;
+  border-radius: 10px;
+  background: #f3f3f3;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.address-type.active {
+  background: #d4e8ff;
+  border-color: #2a77ff;
+}
+
+/* SAVE BUTTON + ANIMATION */
+.save-btn {
+  width: 100%;
+  padding: 15px;
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  background: #2f7e32;
+  color: white;
+  transition: 0.25s ease;
+}
+
+.save-btn.saved {
+  background: #0da82b !important;
+  transform: scale(1.05);
+  letter-spacing: 1px;
+}
+
+/* -------------------------------- */
+/*        RESPONSIVE FIXES          */
+/* -------------------------------- */
+
+/* TABLET MODE (max-width: 900px) */
+@media (max-width: 900px) {
+  .profile-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .address-card, .profile-card {
+    width: 100%;
+  }
+}
+
+/* MOBILE MODE (max-width: 600px) */
+@media (max-width: 600px) {
+
+  /* PROFILE IMAGE */
+  .profile-image {
+    width: 130px;
+    height: 130px;
+  }
+
+  /* FORM TWO COLUMNS → ONE COLUMN */
+  .row {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  /* ADDRESS CARD PADDING REDUCED */
+  .address-card {
+    padding: 22px;
+  }
+
+  /* TITLE SIZE */
+  .address-title {
+    font-size: 20px;
+  }
+
+  .save-btn {
+    font-size: 16px;
+    padding: 12px;
+  }
+}
+
+/* VERY SMALL MOBILE (max-width: 360px) */
+@media (max-width: 360px) {
+
+  .profile-image {
+    width: 110px;
+    height: 110px;
+  }
+
+  input {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .address-card {
+    padding: 18px;
+  }
+}

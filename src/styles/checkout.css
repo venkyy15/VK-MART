@@ -1,0 +1,24 @@
+.checkout-container {
+  max-width: 1100px;
+}
+
+.checkout-card {
+  border-radius: 14px;
+}
+
+.checkout-items {
+  max-height: 230px;
+  overflow-y: auto;
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  .checkout-card {
+    padding: 16px !important;
+  }
+
+  .checkout-container {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+}

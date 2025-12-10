@@ -1,0 +1,30 @@
+.orders-container {
+  max-width: 900px;
+}
+
+.order-card {
+  border-radius: 14px;
+}
+
+.order-name-text {
+  max-width: 220px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  .orders-container {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .order-card {
+    padding: 14px !important;
+  }
+
+  .order-name-text {
+    max-width: 180px;
+  }
+}
