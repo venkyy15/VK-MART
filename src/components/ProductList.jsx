@@ -11,8 +11,10 @@ export default function ProductList({ search }) {
       className="product-wrapper"
       style={{
         width: "100%",
-        padding: "0px 12px",
+        padding: "0 10px",
         marginTop: "10px",
+        overflow: "hidden", // ⭐ IMPORTANT
+        boxSizing: "border-box",
       }}
     >
       <h3
@@ -27,63 +29,23 @@ export default function ProductList({ search }) {
         Top Products
       </h3>
 
-      <div className="product-grid">
+      {/* RESPONSIVE GRID */}
+      <div
+        className="product-grid"
+        style={{
+          display: "grid",
+          gap: "10px",
+          width: "100%",
+          maxWidth: "100%",
+          gridTemplateColumns: "repeat(2, 1fr)", // ⭐ MOBILE S FIX
+          overflow: "hidden",
+          boxSizing: "border-box",
+        }}
+      >
         {filteredProducts.map((item) => (
           <ProductCard key={item.id} item={item} />
         ))}
       </div>
-
-      {/* RESPONSIVE GRID FIX */}
-      <style>{`
-        .product-grid {
-          display: grid;
-          width: 100%;
-          gap: 12px;
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-
-        /* --- MOBILE S (320px) FIX --- */
-        @media (max-width: 360px) {
-          .product-grid {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-          }
-          .product-card {
-            padding: 8px !important;
-          }
-          .product-card img {
-            height: 130px !important;   /* FIX CUTTING */
-            border-radius: 6px !important;
-          }
-        }
-
-        /* --- MOBILE M/L (375px–425px) --- */
-        @media (min-width: 361px) and (max-width: 599px) {
-          .product-card img {
-            height: 150px !important;
-          }
-        }
-
-        /* TABLET 600px → 3 columns */
-        @media (min-width: 600px) {
-          .product-grid {
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-          }
-          .product-card img {
-            height: 170px !important;
-          }
-        }
-
-        /* DESKTOP 992px → 4 columns */
-        @media (min-width: 992px) {
-          .product-grid {
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-          }
-          .product-card img {
-            height: 190px !important;
-          }
-        }
-      `}</style>
     </div>
   );
 }
