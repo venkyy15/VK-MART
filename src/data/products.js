@@ -31,7 +31,7 @@ const products = [
     discountPercent: 17,
     rating: 4.5,
     reviews: 310,
-    image: "/images/mobiles/narzo60pro.jpg"
+    image: "/images/mobiles/Realme Narzo 60 Pro.jpg"
   },
 
   // -------------------- ELECTRONICS --------------------
