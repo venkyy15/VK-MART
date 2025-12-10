@@ -20,7 +20,7 @@ const products = [
     discountPercent: 20,
     rating: 4.8,
     reviews: 412,
-    image: "/images/mobiles/s23ultra.jpg"
+    image: "/images/mobiles/Samsung Galaxy S23 Ultra.jpg"
   },
   {
     id: 3,
