@@ -114,7 +114,7 @@ export default function Header({ onSearch }) {
 
                   {/* HELLO NAME */}
                   <span style={{ color: "white", fontWeight: 600 }}>
-                    Hello, {user?.name || "User"}
+                    Hi,{user?.name || "User"}
                   </span>
                 </div>
 
