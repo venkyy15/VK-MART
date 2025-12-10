@@ -259,7 +259,7 @@ const products = [
     discountPercent: 28,
     rating: 4.4,
     reviews: 132,
-    image: "/images/home/carpet.jpg"
+    image: "/images/home/Luxury Floor Carpet Larg.jpg"
   },
 
   // -------------------- BEAUTY --------------------
