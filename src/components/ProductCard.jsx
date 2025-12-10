@@ -43,30 +43,54 @@ export default function ProductCard({ item }) {
         boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
         cursor: "pointer",
         transition: "0.3s",
+        width: "100%",
         display: "flex",
         flexDirection: "column",
       }}
-      onClick={openDetails}  // ⭐ CLICK → GO DETAILS ⭐
+      onClick={openDetails}
     >
+      {/* PRODUCT IMAGE */}
       <img
         src={item.image}
         alt={item.name}
         style={{
           width: "100%",
-          height: "180px",
+          height: "160px",
           objectFit: "cover",
           borderRadius: "8px",
           marginBottom: "10px",
         }}
       />
 
-      <h5 style={{ fontSize: "16px", fontWeight: "600", minHeight: "45px" }}>
+      {/* PRODUCT NAME */}
+      <h5
+        style={{
+          fontSize: "15px",
+          fontWeight: "600",
+          minHeight: "40px",
+          lineHeight: "20px",
+        }}
+      >
         {item.name}
       </h5>
 
-      {/* PRICE */}
-      <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-        <span style={{ fontSize: "18px", color: "#2f7e32", fontWeight: 700 }}>
+      {/* PRICE SECTION */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "6px",
+          marginTop: "4px",
+          flexWrap: "wrap",
+        }}
+      >
+        <span
+          style={{
+            fontSize: "17px",
+            color: "#2f7e32",
+            fontWeight: 700,
+          }}
+        >
           ₹{item.price}
         </span>
 
@@ -74,18 +98,24 @@ export default function ProductCard({ item }) {
           style={{
             textDecoration: "line-through",
             color: "#888",
-            fontSize: "14px",
+            fontSize: "13px",
           }}
         >
           ₹{item.originalPrice}
         </span>
 
-        <span style={{ color: "red", fontWeight: "600", fontSize: "14px" }}>
+        <span
+          style={{
+            color: "red",
+            fontWeight: "600",
+            fontSize: "13px",
+          }}
+        >
           {item.discountPercent}% OFF
         </span>
       </div>
 
-      {/* BUTTONS (Prevent card click bubbling) */}
+      {/* ADD TO CART BUTTON */}
       <button
         onClick={(e) => {
           e.stopPropagation();
@@ -93,18 +123,19 @@ export default function ProductCard({ item }) {
         }}
         style={{
           width: "100%",
-          padding: "8px",
+          padding: "10px",
           borderRadius: "6px",
           border: "none",
           background: "#2f7e32",
           color: "white",
-          marginTop: "10px",
           fontWeight: 600,
+          marginTop: "12px",
         }}
       >
         Add to Cart
       </button>
 
+      {/* BUY NOW BUTTON */}
       <button
         onClick={(e) => {
           e.stopPropagation();
@@ -112,13 +143,13 @@ export default function ProductCard({ item }) {
         }}
         style={{
           width: "100%",
-          padding: "8px",
+          padding: "10px",
           borderRadius: "6px",
           border: "1px solid #2f7e32",
           background: "white",
           color: "#2f7e32",
           fontWeight: 600,
-          marginTop: "5px",
+          marginTop: "6px",
         }}
       >
         Buy Now
