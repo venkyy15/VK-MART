@@ -3,115 +3,56 @@ export default function ProductCard({ item }) {
 
   // ADD TO CART FUNCTION (quantity support)
   const addToCart = () => {
-    let cart = JSON.parse(localStorage.getItem("vkCart") || "[]");
-
-    // Check if same product already exists
-    const index = cart.findIndex((p) => p.id === item.id);
-
-    if (index !== -1) {
-      // Increase quantity
-      cart[index].qty += 1;
-    } else {
-      // First time product add
-      cart.push({ ...item, qty: 1 });
-    }
-
-    // Save updated cart
-    localStorage.setItem("vkCart", JSON.stringify(cart));
-
-    // Update header instantly
-    window.dispatchEvent(new Event("cartUpdated"));
-
-    alert("Added to Cart!");
+  let cart = JSON.parse(localStorage.getItem("vkCart") || "[]");
+  const index = cart.findIndex((p) => p.id === item.id);
+  if (index !== -1) {
+  cart[index].qty += 1;
+  } else {
+  cart.push({ ...item, qty: 1 });
+  }
+  localStorage.setItem("vkCart", JSON.stringify(cart));
+  window.dispatchEvent(new Event("cartUpdated"));
+  alert("Added to Cart!");
   };
-
-  // BUY NOW FUNCTION → Direct Checkout
+  // BUY NOW FUNCTION
   const buyNow = () => {
-    localStorage.setItem("vkBuyNow", JSON.stringify(item));
-    window.location.href = "/checkout";
+  localStorage.setItem("vkBuyNow", JSON.stringify(item));
+  window.location.href = "/checkout";
   };
-
-  return (
-    <div
-      className="product-card"
-      style={{
-        background: "white",
-        borderRadius: "10px",
-        padding: "12px",
-        boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
-        cursor: "pointer",
-        transition: "0.3s",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-      }}
-    >
-      {/* PRODUCT IMAGE */}
-      <img
-        src={item.image || "/default-product.jpg"}
-        alt={item.name || "Product"}
-        style={{
-          width: "100%",
-          height: "180px",
-          objectFit: "cover",
-          borderRadius: "8px",
-          marginBottom: "10px",
-        }}
-      />
-
-      {/* PRODUCT NAME */}
-      <h5
-        style={{
-          fontSize: "16px",
-          fontWeight: "600",
-          minHeight: "45px",
-        }}
-      >
-        {item.name}
-      </h5>
-
-      {/* PRICE */}
-      <p
-        style={{
-          fontSize: "15px",
-          fontWeight: "700",
-          color: "#2f7e32",
-          marginBottom: "6px",
-        }}
-      >
-        ₹{item.price}
-      </p>
-
-      {/* ADD TO CART BUTTON */}
-      <button
-        style={{
-          width: "100%",
-          padding: "8px",
-          borderRadius: "6px",
-          border: "none",
-          background: "#2f7e32",
-          fontWeight: "600",
-          color: "white",
-          marginBottom: "5px",
-        }}
-        onClick={addToCart}
-      >
+return (
+  <div className="product-card">
+  {/* IMAGE WITH DISCOUNT BADGE */}
+  <div className="pc-img-box">
+  <img
+  src={item.image || "/default-product.jpg"}
+   alt={item.name}
+  className="pc-img"
+  />
+  {item.discountPercent && (
+  <span className="pc-discount-badge">-{item.discountPercent}%</span>
+  )}
+  </div>
+  {/* NAME */}
+  <h5 className="pc-name">{item.name}</h5>
+  {/* PRICE SECTION */}
+  <div className="pc-price-box">
+  <span className="pc-price">₹{item.price}</span>
+  {item.originalPrice && (
+  <>
+  <span className="pc-original">₹{item.originalPrice}</span>
+  <span className="pc-off">{item.discountPercent}% OFF</span>
+          </>
+        )}
+      </div>
+      {/* RATING */}
+      <div className="pc-rating">
+        ⭐ {item.rating} | {item.reviews} reviews
+      </div>
+      {/* BUTTONS */}
+      <button className="pc-btn-add" onClick={addToCart}>
         Add to Cart
       </button>
-
-      {/* BUY NOW BUTTON */}
-      <button
-        style={{
-          width: "100%",
-          padding: "8px",
-          borderRadius: "6px",
-          border: "1px solid #2f7e32",
-          background: "white",
-          color: "#2f7e32",
-          fontWeight: "600",
-        }}
-        onClick={buyNow}
-      >
+      <button className="pc-btn-buy" onClick={buyNow}>
         Buy Now
       </button>
     </div>
