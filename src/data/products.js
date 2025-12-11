@@ -590,7 +590,8 @@ const products = [
     reviews: 99,
     image: "/images/toys/Shumee Kids Learning Toy Set.jpg",
     images: [
-      "/images/toys/ToySet/1.jpg"
+      "/images/toys/ToySet/1.jpg",
+       "/images/toys/ToySet/2.jpg"
     ],
     description: "Learning toy set for toddlers.",
     highlights: [
@@ -611,7 +612,9 @@ const products = [
     reviews: 188,
     image: "/images/toys/Remote Control Racing Car.jpg",
     images: [
-      "/images/toys/Car/1.jpg"
+      "/images/toys/Car/1.jpg",
+      "/images/toys/Car/2.jpg",
+      "/images/toys/Car/3.jpg"
     ],
     description: "High speed RC racing car.",
     highlights: [
@@ -632,7 +635,8 @@ const products = [
     reviews: 77,
     image: "/images/toys/Soft Teddy Bear 3ft.jpg",
     images: [
-      "/images/toys/Teddy/1.jpg"
+      "/images/toys/Teddy/1.jpg",
+      "/images/toys/Teddy/2.jpg"
     ],
     description: "Cute & soft teddy bear.",
     highlights: [
@@ -655,7 +659,9 @@ const products = [
     reviews: 201,
     image: "/images/electronics/Sony Noise Cancelling Headphones.jpg",
     images: [
-      "/images/electronics/Sony/1.jpg"
+      "/images/electronics/Sony/1.jpg",
+      "/images/electronics/Sony/2.jpg",
+      "/images/electronics/Sony/3.jpg"
     ],
     description: "Premium ANC headphones by Sony.",
     highlights: [
@@ -676,7 +682,10 @@ const products = [
     reviews: 150,
     image: "/images/electronics/Lenovo Tablet M10.jpg",
     images: [
-      "/images/electronics/Tablet/1.jpg"
+      "/images/electronics/Tablet/1.jpg",
+      "/images/electronics/Tablet/2.jpg",
+      "/images/electronics/Tablet/3.jpg"
+      
     ],
     description: "10 inch tablet suitable for study & entertainment.",
     highlights: [
