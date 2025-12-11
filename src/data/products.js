@@ -62,7 +62,8 @@ const products = [
     image: "/images/mobiles/Realme Narzo 60 Pro.jpg",
     images: [
       "/images/mobiles/Narzo60/1.jpg",
-      "/images/mobiles/Narzo60/2.jpg"
+      "/images/mobiles/Narzo60/2.jpg",
+      "/images/mobiles/Narzo60/3.jpg"
     ],
     description: "Realme Narzo series with curved OLED display.",
     highlights: [
