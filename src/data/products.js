@@ -327,7 +327,8 @@ const products = [
     reviews: 89,
     image: "/images/groceries/Crystal Sugar 5kg.jpg",
     images: [
-      "/images/groceries/Sugar/1.jpg"
+      "/images/groceries/Sugar/1.jpg",
+      "/images/groceries/Sugar/2.jpg"
     ],
     description: "Pure sugar crystals great for cooking.",
     highlights: [
