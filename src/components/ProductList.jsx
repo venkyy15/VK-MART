@@ -16,7 +16,6 @@ export default function ProductList({ search }) {
         boxSizing: "border-box",
       }}
     >
-      {/* TITLE */}
       <h3
         style={{
           marginBottom: "15px",
@@ -28,51 +27,40 @@ export default function ProductList({ search }) {
         Top Products
       </h3>
 
-      {/* PRODUCT GRID */}
-      <div
-        className="product-grid"
-        style={{
-          display: "grid",
-          gap: "14px",
-          width: "100%",
-          boxSizing: "border-box",
-
-          // ⭐ DEFAULT (Mobile S - 320px)
-          gridTemplateColumns: "1fr",
-        }}
-      >
+      <div className="product-grid">
         {filteredProducts.map((item) => (
           <ProductCard key={item.id} item={item} />
         ))}
       </div>
 
-      {/* RESPONSIVE CSS */}
+      {/* RESPONSIVE FIX */}
       <style>{`
-        /* ⭐ Mobile S: 320px → 1 column */
-        @media (max-width: 360px) {
-          .product-grid {
-            grid-template-columns: 1fr !important;
-          }
+        .product-grid {
+          display: grid;
+          width: 100%;
+          box-sizing: border-box;
+          gap: 14px;
+          grid-template-columns: repeat(1, 1fr); /* DEFAULT: MOBILE S = 1 */
         }
 
-        /* ⭐ Mobile M/L: 361px–599px → 2 columns */
+        /* MOBILE M/L (361px–599px) → 2 per row */
         @media (min-width: 361px) and (max-width: 599px) {
           .product-grid {
-            grid-template-columns: repeat(2, 1fr) !important;
+            grid-template-columns: repeat(2, 1fr);
           }
         }
 
-        /* ⭐ Tablet: 600px–991px → 3 columns */
-        @media (min-width: 600px) and (max-width: 991px) {
+        /* TABLET 600px → 3 per row */
+        @media (min-width: 600px) {
           .product-grid {
-            grid-template-columns: repeat(3, 1fr) !important;
+            grid-template-columns: repeat(3, 1fr);
           }
         }
 
-        /* ⭐ Laptop/Desktop: 992px+ → 4 columns */
+        /* DESKTOP 992px → 4 per row */
         @media (min-width: 992px) {
           .product-grid {
-            grid-template-columns: repeat(4, 1fr) !important;
+            grid-template-columns: repeat(4, 1fr);
           }
         }
       `}</style>

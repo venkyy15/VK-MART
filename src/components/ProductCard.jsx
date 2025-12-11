@@ -11,13 +11,10 @@ export default function ProductCard({ item }) {
 
   const addToCart = () => {
     let cart = JSON.parse(localStorage.getItem("vkCart") || "[]");
-    const index = cart.findIndex((p) => p.id === item.id);
 
-    if (index !== -1) {
-      cart[index].qty += 1;
-    } else {
-      cart.push({ ...item, qty: 1 });
-    }
+    const index = cart.findIndex((p) => p.id === item.id);
+    if (index !== -1) cart[index].qty += 1;
+    else cart.push({ ...item, qty: 1 });
 
     localStorage.setItem("vkCart", JSON.stringify(cart));
     window.dispatchEvent(new Event("cartUpdated"));
@@ -36,26 +33,23 @@ export default function ProductCard({ item }) {
       style={{
         background: "white",
         borderRadius: "10px",
-        padding: "10px",
+        padding: "12px",
         boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
         display: "flex",
         flexDirection: "column",
         cursor: "pointer",
-
-        // ⭐⭐ MOST IMPORTANT FIX ⭐⭐
         width: "100%",
         boxSizing: "border-box",
-        margin: "0px",
       }}
     >
-      {/* IMAGE FIX — NEVER CUT, NEVER OVERFLOW */}
+      {/* IMAGE FIX */}
       <div
         style={{
           width: "100%",
           height: "auto",
           display: "flex",
-          alignItems: "center",
           justifyContent: "center",
+          alignItems: "center",
           overflow: "hidden",
         }}
       >
@@ -66,17 +60,15 @@ export default function ProductCard({ item }) {
             width: "100%",
             height: "auto",
             objectFit: "contain",
-            borderRadius: "6px",
+            borderRadius: "8px",
           }}
         />
       </div>
 
-      {/* TITLE */}
-      <h5 style={{ fontSize: "16px", fontWeight: 600, minHeight: "50px" }}>
+      <h5 style={{ fontSize: "16px", fontWeight: 600, minHeight: "45px" }}>
         {item.name}
       </h5>
 
-      {/* PRICE */}
       <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
         <span style={{ fontSize: "18px", color: "#2f7e32", fontWeight: 700 }}>
           ₹{item.price}
@@ -97,21 +89,20 @@ export default function ProductCard({ item }) {
         </span>
       </div>
 
-      {/* BUTTONS */}
       <button
         onClick={(e) => {
           e.stopPropagation();
           addToCart();
         }}
         style={{
-          width: "100%",
+          marginTop: "10px",
           padding: "8px",
+          width: "100%",
           borderRadius: "6px",
           border: "none",
           background: "#2f7e32",
           color: "white",
-          marginTop: "10px",
-          fontWeight: 600,
+          fontWeight: 700,
         }}
       >
         Add to Cart
@@ -123,14 +114,14 @@ export default function ProductCard({ item }) {
           buyNow();
         }}
         style={{
-          width: "100%",
+          marginTop: "8px",
           padding: "8px",
+          width: "100%",
           borderRadius: "6px",
           border: "1px solid #2f7e32",
-          background: "white",
+          background: "#fff",
           color: "#2f7e32",
-          fontWeight: 600,
-          marginTop: "6px",
+          fontWeight: 700,
         }}
       >
         Buy Now
