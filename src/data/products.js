@@ -296,7 +296,7 @@ const products = [
 
   {
     id: 13,
-    name: "Daily Milk Pocket (Pack of 2)",
+    name: "Dairy Milk Pocket (Pack of 2)",
     category: "Groceries",
     price: 118,
     originalPrice: 150,
