@@ -457,7 +457,8 @@ const products = [
     reviews: 188,
     image: "/images/fashion/Mens Winter Jacket.jpg",
     images: [
-      "/images/fashion/Jacket/1.jpg"
+      "/images/fashion/Jacket/1.jpg",
+       "/images/fashion/Jacket/2.jpg"
     ],
     description: "Warm winter jacket for cold weather.",
     highlights: [
