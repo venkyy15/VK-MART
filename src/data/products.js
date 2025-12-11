@@ -126,7 +126,7 @@ const products = [
 
   {
     id: 6,
-    name: "HP Nitro Gaming Laptop",
+    name: "HP Smartchoice Victus Gaming Laptop",
     category: "Electronics",
     price: 58999,
     originalPrice: 69999,
