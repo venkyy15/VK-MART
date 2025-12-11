@@ -136,7 +136,8 @@ const products = [
     image: "/images/electronics/HP Nitro Gaming Laptop.jpg",
     images: [
       "/images/electronics/Nitro/1.jpg",
-      "/images/electronics/Nitro/2.jpg"
+      "/images/electronics/Nitro/2.jpg",
+      "/images/electronics/Nitro/3.jpg"
     ],
     description: "High-performance gaming laptop for pro gamers.",
     highlights: [
