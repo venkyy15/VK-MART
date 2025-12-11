@@ -1,130 +1,120 @@
+// ===============================
+//      Orders.jsx (FINAL FIXED)
+// ===============================
+
 import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import "../styles/orders.css";
+import { Link } from "react-router-dom";
 
 export default function Orders() {
   const [orders, setOrders] = useState([]);
 
+  // Load orders from LocalStorage
   useEffect(() => {
-    let saved = JSON.parse(localStorage.getItem("vkOrders") || "[]");
-
-    // 🔥 Auto-fix old orders missing status
-    saved = saved.map((o) => ({
-      ...o,
-      status: o.status || "Pending", // default status
-    }));
-
-    localStorage.setItem("vkOrders", JSON.stringify(saved));
-
-    setOrders(saved.reverse());
+    const stored = JSON.parse(localStorage.getItem("vkOrders") || "[]");
+    setOrders(stored);
   }, []);
+
+  // Cancel Order
+  const cancelOrder = (id) => {
+    const updated = orders.map((o) =>
+      o.id === id ? { ...o, status: "Cancelled" } : o
+    );
+
+    setOrders(updated);
+    localStorage.setItem("vkOrders", JSON.stringify(updated));
+    alert("Order Cancelled!");
+  };
+
+  if (orders.length === 0) {
+    return (
+      <div className="vk-page">
+        <Header />
+        <main className="vk-content">
+          <div className="container text-center py-5">
+            <h4>No Orders Found</h4>
+            <Link to="/" className="btn btn-success mt-3">
+              Shop Now
+            </Link>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
 
   return (
     <div className="vk-page">
       <Header />
-
       <main className="vk-content">
-        <div className="container">
-          <h3 className="mb-3" style={{ color: "#2f7e32" }}>My Orders</h3>
+        <div className="container py-3">
+          <h3 className="mb-3">Your Orders</h3>
 
-          {orders.length === 0 && (
-            <p style={{ textAlign: "center", marginTop: "20px", fontSize: "18px" }}>
-              No orders found.
-            </p>
-          )}
+          {orders.map((order) => {
+            const firstItem = order.items?.[0]; // 👉 MAIN FIX
+            const image =
+              firstItem?.image ||
+              firstItem?.images?.[0] ||
+              "/fallback.png"; // fallback so never breaks
 
-          <div className="order-list" style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
-            {orders.map((order, index) => (
-              <div
-                key={index}
-                className="order-card"
-                style={{
-                  background: "white",
-                  padding: "15px",
-                  borderRadius: "10px",
-                  boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
-                }}
-              >
-                {/* ORDER HEADER */}
-                <div style={{ display: "flex", justifyContent: "space-between" }}>
-                  <b>Order #{order.id}</b>
-
-                  <span
-                    className={`status-pill status-${
-                      (order?.status || "Pending").toLowerCase()
-                    }`}
-                    style={{
-                      padding: "4px 10px",
-                      borderRadius: "20px",
-                      fontSize: "12px",
-                      background:
-                        order?.status === "Delivered"
-                          ? "#c8f7c5"
-                          : order?.status === "Cancelled"
-                          ? "#ffdddd"
-                          : "#ffeab6",
-                      color:
-                        order?.status === "Delivered"
-                          ? "#257a29"
-                          : order?.status === "Cancelled"
-                          ? "#a30000"
-                          : "#8a6d00",
-                    }}
-                  >
-                    {order?.status || "Pending"}
-                  </span>
+            return (
+              <div className="order-card" key={order.id}>
+                
+                {/* IMAGE */}
+                <div className="order-img-box">
+                  <img src={image} alt={firstItem?.name} className="order-img" />
                 </div>
 
-                {/* ITEMS LIST */}
-                <div style={{ marginTop: "10px" }}>
-                  {order.items?.map((item, i) => (
-                    <div
-                      key={i}
+                {/* DETAILS */}
+                <div className="order-info">
+                  <h5>{firstItem?.name}</h5>
+
+                  <p className="text-success fw-bold">
+                    ₹{order.total}
+                  </p>
+
+                  <p className="mb-1">
+                    Status:{" "}
+                    <span
                       style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "10px",
-                        marginBottom: "10px",
+                        color:
+                          order.status === "Pending"
+                            ? "orange"
+                            : order.status === "Cancelled"
+                            ? "red"
+                            : "green",
+                        fontWeight: "bold",
                       }}
                     >
-                      <img
-                        src={item.image}
-                        style={{
-                          width: "70px",
-                          height: "70px",
-                          borderRadius: "8px",
-                          objectFit: "contain",
-                          background: "#f6f6f6",
-                        }}
-                      />
+                      {order.status}
+                    </span>
+                  </p>
 
-                      <div>
-                        <b style={{ fontSize: "14px" }}>{item.name}</b>
-                        <p style={{ margin: 0, fontSize: "13px", color: "#2f7e32" }}>
-                          ₹{item.price} × {item.qty}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                  <div className="mt-2 d-flex gap-2">
+                    <Link
+                      to={`/order/${order.id}`}
+                      className="btn btn-sm btn-primary"
+                    >
+                      View Details
+                    </Link>
 
-                {/* TOTAL PRICE */}
-                <div
-                  style={{
-                    textAlign: "right",
-                    fontWeight: "600",
-                    marginTop: "5px",
-                    fontSize: "16px",
-                  }}
-                >
-                  Total: ₹{order.total}
+                    {order.status !== "Cancelled" && (
+                      <button
+                        className="btn btn-sm btn-danger"
+                        onClick={() => cancelOrder(order.id)}
+                      >
+                        Cancel Order
+                      </button>
+                    )}
+                  </div>
                 </div>
               </div>
-            ))}
-          </div>
+            );
+          })}
         </div>
       </main>
-
       <Footer />
     </div>
   );

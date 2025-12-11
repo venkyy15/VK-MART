@@ -1,226 +1,83 @@
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import products from "../data/products";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 export default function ProductDetails() {
-    const { id } = useParams();
-    const [product, setProduct] = useState(null);
-    const [previewImage, setPreviewImage] = useState("");
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [item, setItem] = useState(null);
+  const [active, setActive] = useState(0);
 
-    useEffect(() => {
-        const selected = products.find((p) => p.id === Number(id));
-        setProduct(selected);
-        if (selected?.images?.length > 0) {
-            setPreviewImage(selected.images[0]);
-        }
-    }, [id]);
+  useEffect(() => {
+    const p = products.find((x) => String(x.id) === String(id));
+    if (!p) { navigate("/"); return; }
+    setItem(p);
+  }, [id]);
 
-    if (!product) return <h2>Loading...</h2>;
+  if (!item) return null;
 
-    // ADD TO CART
-    const addToCart = () => {
-        let cart = JSON.parse(localStorage.getItem("vkCart") || "[]");
+  const addToCart = () => {
+    let cart = JSON.parse(localStorage.getItem("vkCart") || "[]");
+    const idx = cart.findIndex((p) => p.id === item.id);
+    if (idx !== -1) cart[idx].qty += 1;
+    else cart.push({ ...item, qty: 1 });
+    localStorage.setItem("vkCart", JSON.stringify(cart));
+    window.dispatchEvent(new Event("cartUpdated"));
+    alert("Added to Cart");
+  };
 
-        const index = cart.findIndex((i) => i.id === product.id);
+  const buyNow = () => {
+    localStorage.setItem("vkBuyNow", JSON.stringify({ ...item, qty: 1 }));
+    window.location.href = "/checkout";
+  };
 
-        if (index !== -1) {
-            cart[index].qty += 1;
-        } else {
-            cart.push({ ...product, qty: 1 });
-        }
+  return (
+    <div className="vk-page">
+      <Header />
+      <main className="vk-content" style={{ padding: "14px 12px" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", gap: 20, flexWrap: "wrap" }}>
+          <div style={{ flex: "1 1 360px", minWidth: 280 }}>
+            <div style={{ width: "100%", height: 360, background: "#f7f7f7", borderRadius: 10, display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <img src={item.images?.[active] || item.image} alt={item.name} style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }} />
+            </div>
 
-        localStorage.setItem("vkCart", JSON.stringify(cart));
-        window.dispatchEvent(new Event("cartUpdated"));
-        alert("Added to Cart!");
-    };
-
-    // BUY NOW
-    const buyNow = () => {
-        localStorage.setItem("vkBuyNow", JSON.stringify(product));
-        window.location.href = "/checkout";
-    };
-
-    return (
-        <div className="vk-page">
-            <Header />
-
-            <main className="vk-content" style={{ padding: "20px" }}>
-                <div
-                    className="product-details-container"
-                    style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: "20px",
-                    }}
-                >
-                    {/* TOP SECTION → GALLERY + DETAILS */}
-                    <div
-                        className="product-top"
-                        style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            gap: "20px",
-                        }}
-                    >
-
-                        {/* IMAGE + THUMBNAILS */}
-                        <div>
-                            <img
-                                src={previewImage}
-                                alt={product.name}
-                                style={{
-                                    width: "100%",
-                                    maxWidth: "400px",
-                                    borderRadius: "10px",
-                                }}
-                            />
-
-                            {/* Thumbnails */}
-                            <div
-                                style={{
-                                    display: "flex",
-                                    gap: "10px",
-                                    marginTop: "10px",
-                                }}
-                            >
-                                {product.images?.map((img, i) => (
-                                    <img
-                                        key={i}
-                                        src={img}
-                                        alt="thumb"
-                                        onClick={() => setPreviewImage(img)}
-                                        style={{
-                                            width: "60px",
-                                            height: "60px",
-                                            borderRadius: "8px",
-                                            cursor: "pointer",
-                                            border:
-                                                previewImage === img
-                                                    ? "2px solid green"
-                                                    : "1px solid #ccc",
-                                            objectFit: "cover",
-                                        }}
-                                    />
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* PRODUCT DETAILS */}
-                        <div style={{ flex: 1 }}>
-                            <h2 style={{ fontWeight: "700" }}>{product.name}</h2>
-
-                            <div style={{ marginTop: "5px", fontSize: "14px" }}>
-                                ⭐ {product.rating} | {product.reviews} reviews
-                            </div>
-
-                            {/* PRICE BLOCK */}
-                            <div style={{ marginTop: "10px" }}>
-                                <span
-                                    style={{
-                                        fontSize: "24px",
-                                        fontWeight: "700",
-                                        color: "green",
-                                    }}
-                                >
-                                    ₹{product.price}
-                                </span>
-
-                                <span
-                                    style={{
-                                        marginLeft: "10px",
-                                        textDecoration: "line-through",
-                                        color: "gray",
-                                    }}
-                                >
-                                    ₹{product.originalPrice}
-                                </span>
-
-                                <span
-                                    style={{ marginLeft: "10px", color: "red", fontWeight: "600" }}
-                                >
-                                    {product.discountPercent}% OFF
-                                </span>
-                            </div>
-
-                            {/* BUY BUTTONS */}
-                            <div style={{ marginTop: "20px" }}>
-                                <button
-                                    onClick={addToCart}
-                                    style={{
-                                        width: "100%",
-                                        padding: "12px",
-                                        borderRadius: "8px",
-                                        background: "#2f7e32",
-                                        color: "white",
-                                        border: "none",
-                                        fontSize: "17px",
-                                        fontWeight: "600",
-                                        marginBottom: "10px",
-                                    }}
-                                >
-                                    Add to Cart
-                                </button>
-
-                                <button
-                                    onClick={buyNow}
-                                    style={{
-                                        width: "100%",
-                                        padding: "12px",
-                                        borderRadius: "8px",
-                                        background: "white",
-                                        color: "#2f7e32",
-                                        border: "2px solid #2f7e32",
-                                        fontSize: "17px",
-                                        fontWeight: "600",
-                                    }}
-                                >
-                                    Buy Now
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* HIGHLIGHTS */}
-                    <div
-                        className="product-highlights"
-                        style={{
-                            background: "white",
-                            padding: "20px",
-                            borderRadius: "10px",
-                            boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
-                        }}
-                    >
-                        <h4>Highlights</h4>
-                        <ul>
-                            {product.highlights?.map((h, i) => (
-                                <li key={i} style={{ marginTop: "6px" }}>
-                                    {h}
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-
-                    {/* DESCRIPTION */}
-                    <div
-                        className="product-description"
-                        style={{
-                            background: "white",
-                            padding: "20px",
-                            borderRadius: "10px",
-                            boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
-                        }}
-                    >
-                        <h4>Description</h4>
-                        <p style={{ marginTop: "10px", lineHeight: "1.6" }}>
-                            {product.description}
-                        </p>
-                    </div>
+            <div style={{ display: "flex", gap: 8, marginTop: 10, overflowX: "auto" }}>
+              {(item.images || [item.image]).map((im, idx) => (
+                <div key={idx} onClick={() => setActive(idx)} style={{ minWidth: 64, height: 64, borderRadius: 8, border: active === idx ? "2px solid var(--accent)" : "1px solid #eee", display: "flex", alignItems: "center", justifyContent: "center", padding: 6, cursor: "pointer" }}>
+                  <img src={im} alt={`thumb-${idx}`} style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }} />
                 </div>
-            </main>
+              ))}
+            </div>
+          </div>
 
-            <Footer />
+          <div style={{ flex: "1 1 320px", minWidth: 260 }}>
+            <h2 style={{ marginTop: 4 }}>{item.name}</h2>
+
+            <div style={{ display: "flex", gap: 10, alignItems: "center", marginTop: 8 }}>
+              <div style={{ fontSize: 22, fontWeight: 800, color: "var(--accent)" }}>₹{item.price}</div>
+              {item.originalPrice && <div style={{ textDecoration: "line-through", color: "#888" }}>₹{item.originalPrice}</div>}
+              {item.discountPercent && <div style={{ color: "#ff4d4f", fontWeight: 700 }}>{item.discountPercent}% OFF</div>}
+            </div>
+
+            <p style={{ marginTop: 12, color: "#333" }}>{item.description}</p>
+
+            <div style={{ marginTop: 12 }}>
+              <b>Highlights</b>
+              <ul style={{ marginTop: 6 }}>
+                {item.highlights?.map((h, i) => <li key={i} style={{ marginBottom: 4 }}>{h}</li>)}
+              </ul>
+            </div>
+
+            <div style={{ display: "flex", gap: 8, marginTop: 12, flexWrap: "wrap" }}>
+              <button className="btn vk-btn-primary" onClick={addToCart} style={{ padding: "10px 16px" }}>Add to Cart</button>
+              <button className="btn" onClick={buyNow} style={{ padding: "10px 16px", border: "1px solid var(--accent)" }}>Buy Now</button>
+            </div>
+          </div>
         </div>
-    );
+      </main>
+      <Footer />
+    </div>
+  );
 }

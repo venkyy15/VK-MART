@@ -1,3 +1,4 @@
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function ProductCard({ item }) {
@@ -5,127 +6,81 @@ export default function ProductCard({ item }) {
 
   if (!item) return null;
 
-  const openDetails = () => {
-    navigate(`/product/${item.id}`);
-  };
+  const openDetails = () => navigate(`/product/${item.id}`);
 
-  const addToCart = () => {
+  const addToCart = (e) => {
+    e.stopPropagation();
     let cart = JSON.parse(localStorage.getItem("vkCart") || "[]");
-
     const index = cart.findIndex((p) => p.id === item.id);
     if (index !== -1) cart[index].qty += 1;
     else cart.push({ ...item, qty: 1 });
-
     localStorage.setItem("vkCart", JSON.stringify(cart));
     window.dispatchEvent(new Event("cartUpdated"));
-    alert("Added to Cart!");
+    alert("Added to Cart");
   };
 
-  const buyNow = () => {
-    localStorage.setItem("vkBuyNow", JSON.stringify(item));
+  const buyNow = (e) => {
+    e.stopPropagation();
+    localStorage.setItem("vkBuyNow", JSON.stringify({ ...item, qty: 1 }));
     window.location.href = "/checkout";
   };
 
+  const addToWishlist = (e) => {
+    e.stopPropagation();
+    const wl = JSON.parse(localStorage.getItem("vkWishlist") || "[]");
+    if (!wl.find((x) => x.id === item.id)) {
+      wl.push(item);
+      localStorage.setItem("vkWishlist", JSON.stringify(wl));
+      alert("Added to Wishlist");
+    } else alert("Already in Wishlist");
+  };
+
   return (
-    <div
-      className="product-card"
-      onClick={openDetails}
-      style={{
-        background: "white",
-        borderRadius: "10px",
-        padding: "12px",
-        boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
-        display: "flex",
-        flexDirection: "column",
-        cursor: "pointer",
+    <div className="product-card" onClick={openDetails} style={{
+      background: "var(--card)",
+      borderRadius: 10,
+      padding: 12,
+      boxShadow: "0 2px 6px rgba(0,0,0,0.06)",
+      display: "flex",
+      flexDirection: "column",
+      cursor: "pointer",
+      boxSizing: "border-box",
+      height: "100%"
+    }}>
+      <div style={{
         width: "100%",
-        boxSizing: "border-box",
-      }}
-    >
-      {/* IMAGE FIX */}
-      <div
-        style={{
-          width: "100%",
-          height: "auto",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          overflow: "hidden",
-        }}
-      >
-        <img
-          src={item.image}
-          alt={item.name}
-          style={{
-            width: "100%",
-            height: "auto",
-            objectFit: "contain",
-            borderRadius: "8px",
-          }}
-        />
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: 8,
+        background: "transparent",
+        borderRadius: 8
+      }}>
+        <img src={item.image || "/default-product.jpg"} alt={item.name}
+          style={{ width: "100%", height: "auto", objectFit: "contain", maxHeight: 200, borderRadius: 6 }} />
       </div>
 
-      <h5 style={{ fontSize: "16px", fontWeight: 600, minHeight: "45px" }}>
-        {item.name}
-      </h5>
+      <h5 style={{ fontSize: 15, fontWeight: 700, marginTop: 10, minHeight: 44 }}>{item.name}</h5>
 
-      <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-        <span style={{ fontSize: "18px", color: "#2f7e32", fontWeight: 700 }}>
-          ₹{item.price}
-        </span>
-
-        <span
-          style={{
-            textDecoration: "line-through",
-            color: "#888",
-            fontSize: "14px",
-          }}
-        >
-          ₹{item.originalPrice}
-        </span>
-
-        <span style={{ color: "red", fontWeight: 600, fontSize: "14px" }}>
-          {item.discountPercent}% OFF
-        </span>
+      <div style={{ display: "flex", gap: 8, alignItems: "center", marginTop: 8 }}>
+        <div style={{ fontSize: 16, fontWeight: 800, color: "var(--accent)" }}>₹{item.price}</div>
+        {item.originalPrice && <div style={{ textDecoration: "line-through", color: "#888", fontSize: 13 }}>₹{item.originalPrice}</div>}
+        {item.discountPercent && <div style={{ color: "#ff4d4f", fontSize: 13, fontWeight: 700 }}>{item.discountPercent}% OFF</div>}
       </div>
 
-      <button
-        onClick={(e) => {
-          e.stopPropagation();
-          addToCart();
-        }}
-        style={{
-          marginTop: "10px",
-          padding: "8px",
-          width: "100%",
-          borderRadius: "6px",
-          border: "none",
-          background: "#2f7e32",
-          color: "white",
-          fontWeight: 700,
-        }}
-      >
-        Add to Cart
-      </button>
+      <div style={{ marginTop: "auto", display: "flex", flexDirection: "column", gap: 8 }}>
+        <button onClick={addToCart} style={{
+          width: "100%", padding: 9, borderRadius: 8, border: "none", background: "var(--accent)", color: "#fff", fontWeight: 700
+        }}>Add to Cart</button>
 
-      <button
-        onClick={(e) => {
-          e.stopPropagation();
-          buyNow();
-        }}
-        style={{
-          marginTop: "8px",
-          padding: "8px",
-          width: "100%",
-          borderRadius: "6px",
-          border: "1px solid #2f7e32",
-          background: "#fff",
-          color: "#2f7e32",
-          fontWeight: 700,
-        }}
-      >
-        Buy Now
-      </button>
+        <button onClick={buyNow} style={{
+          width: "100%", padding: 9, borderRadius: 8, border: `1px solid var(--accent)`, background: "transparent", color: "var(--accent)", fontWeight: 700
+        }}>Buy Now</button>
+
+        <button onClick={addToWishlist} style={{
+          width: "100%", padding: 8, borderRadius: 8, border: "1px solid #eee", background: "transparent", color: "#444"
+        }}>♡ Wishlist</button>
+      </div>
     </div>
   );
 }

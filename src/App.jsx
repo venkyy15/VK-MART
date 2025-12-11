@@ -9,14 +9,18 @@ import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import Orders from "./pages/Orders";
 import OrderConfirmation from "./pages/OrderConfirmation";
-
-// ⭐ NEW IMPORT (VERY IMPORTANT)
+import OrderDetails from "./pages/OrderDetails";
 import ProductDetails from "./pages/ProductDetails";
+import Wishlist from "./pages/Wishlist";
+import Tracking from "./pages/Tracking";
+import Addresses from "./pages/Addresses";
+
+// ❌ REMOVE: ForgotPassword (you do NOT have this page)
+// ❌ REMOVE: CategoryPage (not created)
 
 export default function App() {
   return (
     <Routes>
-
       {/* Home */}
       <Route path="/" element={<Home />} />
 
@@ -24,24 +28,29 @@ export default function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
 
-      {/* User Profile */}
+      {/* Profile */}
       <Route path="/profile" element={<Profile />} />
 
       {/* Cart */}
       <Route path="/cart" element={<Cart />} />
 
-      {/* Checkout */}
+      {/* Checkout system */}
       <Route path="/checkout" element={<Checkout />} />
-
-      {/* Orders Page */}
-      <Route path="/orders" element={<Orders />} />
-
-      {/* Order Confirmation */}
       <Route path="/order-confirm" element={<OrderConfirmation />} />
+      <Route path="/orders" element={<Orders />} />
+      <Route path="/order/:id" element={<OrderDetails />} />
 
-      {/* ⭐ PRODUCT DETAILS PAGE ROUTE (NEWLY ADDED) */}
+      {/* Product Details */}
       <Route path="/product/:id" element={<ProductDetails />} />
 
+      {/* Wishlist */}
+      <Route path="/wishlist" element={<Wishlist />} />
+
+      {/* Tracking */}
+      <Route path="/tracking" element={<Tracking />} />
+
+      {/* Address Page */}
+      <Route path="/addresses" element={<Addresses />} />
     </Routes>
   );
 }

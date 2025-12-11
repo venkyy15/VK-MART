@@ -866,3 +866,77 @@
     font-size: 15px;
   }
 }
+:root {
+  --bg: #f3fff3;
+  --text: #111;
+  --card: #ffffff;
+  --accent: #2f7e32;
+  --accent-2: #d4ffcf;
+}
+
+[data-theme="dark"] {
+  --bg: #071018;
+  --text: #e6eef0;
+  --card: #071c12;
+  --accent: #57d17b;
+  --accent-2: #a4ffd2;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+/* Buttons */
+.vk-btn-primary {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-weight: 700;
+}
+
+/* Product grid */
+.product-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(2, 1fr);
+}
+@media (min-width: 600px) { .product-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 992px) { .product-grid { grid-template-columns: repeat(4, 1fr); } }
+
+/* Product card images - keep full visible, no crop */
+.product-card img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Tiny screens fix */
+@media (max-width: 360px) {
+  .product-card img { max-height: 140px; }
+  .vk-header .vk-header-inner { padding: 8px; }
+}
+
+/* Auth & small UI */
+.vk-auth-card { max-width: 420px; margin: 20px auto; padding: 16px; border-radius: 8px; background: var(--card); box-shadow: 0 6px 20px rgba(0,0,0,0.06); }
+
+.fp-overlay { position: fixed; inset: 0; display: flex; align-items:center; justify-content:center; background: rgba(0,0,0,0.45); z-index: 9999; }
+.fp-box { background: var(--card); padding: 18px; border-radius: 10px; width: 92%; max-width: 380px; }
+
+/* Header layout safe */
+.vk-header { box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+
+/* Responsive helpers */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 12px; box-sizing: border-box; }
+.vk-content { min-height: calc(100vh - 160px); padding-bottom: 60px; }
+
+/* Small utility */
+.btn { padding: 8px 12px; border-radius: 8px; cursor: pointer; }
+.text-muted { color: #6c757d; }
+
+/* Make dropdown-menu visible in simple bootstrap-less environment */
+.dropdown-menu { position: absolute; background: var(--card); box-shadow: 0 6px 18px rgba(0,0,0,0.08); min-width: 160px; z-index: 50; }
