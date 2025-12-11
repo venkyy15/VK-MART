@@ -9,7 +9,7 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // FORGOT PASSWORD STATES
+  // Forgot Password States
   const [showForgot, setShowForgot] = useState(false);
   const [fpEmail, setFpEmail] = useState("");
   const [otpSent, setOtpSent] = useState(false);
@@ -17,7 +17,7 @@ export default function Login() {
   const [enteredOtp, setEnteredOtp] = useState("");
   const [newPass, setNewPass] = useState("");
 
-  // LOGIN
+  // LOGIN FUNCTION
   const handleLogin = () => {
     const user = JSON.parse(localStorage.getItem("vkUser"));
 
@@ -27,7 +27,7 @@ export default function Login() {
     }
 
     if (email !== user.email || password !== user.password) {
-      alert("Invalid email or password");
+      alert("Invalid email or password!");
       return;
     }
 
@@ -55,11 +55,11 @@ export default function Login() {
   // VERIFY OTP
   const handleVerifyOTP = () => {
     if (enteredOtp !== otp) {
-      alert("Invalid OTP!");
+      alert("Incorrect OTP!");
       return;
     }
 
-    alert("OTP Verified! Now set your new password.");
+    alert("OTP Verified! Set new password.");
     setOtpSent("verified");
   };
 
@@ -71,9 +71,14 @@ export default function Login() {
     localStorage.setItem("vkUser", JSON.stringify(user));
 
     alert("Password updated successfully!");
+
+    // Close popup and clear states
     setShowForgot(false);
     setOtp("");
     setOtpSent(false);
+    setEnteredOtp("");
+    setNewPass("");
+    setFpEmail("");
   };
 
   return (
@@ -85,6 +90,7 @@ export default function Login() {
           <div className="vk-auth-card">
             <h4 className="mb-3 text-center">Login to VK Mart</h4>
 
+            {/* Email */}
             <div className="mb-3">
               <label className="form-label">Email</label>
               <input
@@ -96,7 +102,8 @@ export default function Login() {
               />
             </div>
 
-            <div className="mb-3">
+            {/* Password */}
+            <div className="mb-1">
               <label className="form-label">Password</label>
               <input
                 type="password"
@@ -107,14 +114,21 @@ export default function Login() {
               />
             </div>
 
+            {/* Forgot Password Link */}
             <div
               className="text-end mb-2"
-              style={{ fontSize: "14px", cursor: "pointer", color: "#2f7e32" }}
+              style={{
+                fontSize: "14px",
+                cursor: "pointer",
+                color: "#2f7e32",
+                fontWeight: 600,
+              }}
               onClick={() => setShowForgot(true)}
             >
               Forgot Password?
             </div>
 
+            {/* Login Button */}
             <button
               onClick={handleLogin}
               className="btn vk-btn-primary w-100 mt-2"
@@ -122,6 +136,7 @@ export default function Login() {
               Login
             </button>
 
+            {/* Signup Link */}
             <div className="small text-center mt-3">
               New user? <Link to="/signup">Create an account</Link>
             </div>
@@ -130,14 +145,15 @@ export default function Login() {
       </main>
 
       {/* -----------------------------------------
-          FORGOT PASSWORD POPUP 
+          FORGOT PASSWORD POPUP (FULL RESPONSIVE)
       ------------------------------------------- */}
       {showForgot && (
         <div className="fp-overlay">
           <div className="fp-box">
+
             <h5 className="text-center mb-3">Reset Password</h5>
 
-            {/* STEP 1 — Enter email */}
+            {/* STEP 1 — Enter Email */}
             {!otpSent && (
               <>
                 <input
@@ -191,6 +207,7 @@ export default function Login() {
               </>
             )}
 
+            {/* Close */}
             <button
               className="btn btn-link w-100 mt-3"
               onClick={() => setShowForgot(false)}
