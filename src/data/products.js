@@ -414,7 +414,8 @@ const products = [
     reviews: 147,
     image: "/images/fashion/Adidas Men Running Shoes.jpg",
     images: [
-      "/images/fashion/Shoes/1.jpg"
+      "/images/fashion/Shoes/1.jpg",
+      "/images/fashion/Shoes/2.jpg"
     ],
     description: "Comfortable sports running shoes.",
     highlights: [
