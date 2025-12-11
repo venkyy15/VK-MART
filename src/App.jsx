@@ -15,8 +15,8 @@ import Wishlist from "./pages/Wishlist";
 import Tracking from "./pages/Tracking";
 import Addresses from "./pages/Addresses";
 
-// ❌ REMOVE: ForgotPassword (you do NOT have this page)
-// ❌ REMOVE: CategoryPage (not created)
+// ✅ NEW PAYMENT PAGE IMPORT
+import Payment from "./pages/Payment";
 
 export default function App() {
   return (
@@ -34,7 +34,10 @@ export default function App() {
       {/* Cart */}
       <Route path="/cart" element={<Cart />} />
 
-      {/* Checkout system */}
+      {/* Payment Page */}
+      <Route path="/payment" element={<Payment />} />
+
+      {/* Checkout System */}
       <Route path="/checkout" element={<Checkout />} />
       <Route path="/order-confirm" element={<OrderConfirmation />} />
       <Route path="/orders" element={<Orders />} />
