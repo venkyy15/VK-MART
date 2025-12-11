@@ -8,9 +8,9 @@ export default function OrderDetails() {
   const [order, setOrder] = useState(null);
 
   useEffect(() => {
-    const orders = JSON.parse(localStorage.getItem("vkOrders") || "[]");
-    const found = orders.find((o) => o.id.toString() === id.toString());
-    setOrder(found);
+    const allOrders = JSON.parse(localStorage.getItem("vkOrders") || "[]");
+    const found = allOrders.find((o) => String(o.id) === String(id));
+    setOrder(found || null);
   }, [id]);
 
   if (!order) {
@@ -18,75 +18,57 @@ export default function OrderDetails() {
       <div className="vk-page">
         <Header />
         <main className="vk-content text-center py-5">
-          <h4>Order Not Found</h4>
-          <Link to="/orders" className="btn btn-success mt-3">Back to Orders</Link>
+          <h3>Order not found</h3>
+          <Link className="btn btn-success mt-3" to="/orders">
+            Back to Orders
+          </Link>
         </main>
         <Footer />
       </div>
     );
   }
 
+  const firstItem = order.items?.[0] || {};
+  const image =
+    firstItem.image || firstItem.images?.[0] || "/fallback.png";
+
   return (
     <div className="vk-page">
       <Header />
 
-      <main className="vk-content">
-        <div className="container py-3">
-
+      <main className="vk-content" style={{ padding: 15 }}>
+        <div
+          style={{
+            maxWidth: 900,
+            margin: "0 auto",
+            background: "var(--card)",
+            padding: 15,
+            borderRadius: 10,
+          }}
+        >
           <h3 className="mb-3">Order Details</h3>
 
-          <div
-            style={{
-              background: "var(--card)",
-              padding: 15,
-              borderRadius: 12,
-              boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
-            }}
-          >
-            {/* ORDER ITEMS */}
-            {order.items.map((item) => (
-              <div
-                key={item.id}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 12,
-                  borderBottom: "1px solid #eee",
-                  paddingBottom: 10,
-                  marginBottom: 10,
-                }}
-              >
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  style={{
-                    width: 70,
-                    height: 70,
-                    objectFit: "contain",
-                    borderRadius: 8,
-                    background: "#f6fff6",
-                  }}
-                />
+          {/* PRODUCT IMAGE */}
+          <div style={{ textAlign: "center" }}>
+            <img
+              src={image}
+              alt={firstItem.name}
+              style={{
+                width: "100%",
+                maxWidth: 350,
+                borderRadius: 12,
+                objectFit: "contain",
+              }}
+            />
+          </div>
 
-                <div>
-                  <h5 style={{ margin: 0 }}>{item.name}</h5>
-                  <p style={{ margin: 0 }}>Qty: {item.qty || 1}</p>
-                  <p
-                    style={{
-                      margin: 0,
-                      fontWeight: "bold",
-                      color: "#2e7d32",
-                    }}
-                  >
-                    ₹{item.price}
-                  </p>
-                </div>
-              </div>
-            ))}
+          {/* PRODUCT INFO */}
+          <div style={{ marginTop: 15 }}>
+            <h4>{firstItem.name}</h4>
+            <p style={{ fontWeight: 700, color: "green" }}>₹{order.total}</p>
 
-            {/* ORDER STATUS */}
-            <p style={{ fontSize: 16, marginTop: 8 }}>
-              <b>Status:</b>{" "}
+            <p>
+              Status:{" "}
               <span
                 style={{
                   color:
@@ -101,38 +83,36 @@ export default function OrderDetails() {
                 {order.status}
               </span>
             </p>
+          </div>
 
-            {/* ADDRESS */}
-            <div style={{ marginTop: 15 }}>
-              <h5>Delivery Address</h5>
-              <p>{order.address.name}</p>
+          {/* ORDER TRACKING */}
+          <div style={{ marginTop: 25 }}>
+            <h5>Order Tracking</h5>
+
+            <ul style={{ lineHeight: 1.8 }}>
+              <li>Order Placed</li>
+              <li>Packed</li>
+              <li>Shipped</li>
+              <li>Out for Delivery</li>
+              <li>Delivered</li>
+            </ul>
+          </div>
+
+          {/* ADDRESS DETAILS */}
+          <div style={{ marginTop: 25 }}>
+            <h5>Delivery Address</h5>
+
+            <div style={{ lineHeight: 1.8 }}>
+              <p><strong>{order.address.name}</strong></p>
               <p>{order.address.mobile}</p>
               <p>{order.address.address}</p>
-              <p>
-                {order.address.city} - {order.address.pincode}
-              </p>
+              <p>{order.address.city} - {order.address.pincode}</p>
             </div>
+          </div>
 
-            {/* PAYMENT */}
-            <div style={{ marginTop: 15 }}>
-              <h5>Payment Method</h5>
-              <p>{order.payment}</p>
-            </div>
-
-            {/* TOTAL */}
-            <div
-              style={{
-                marginTop: 15,
-                padding: "10px 0",
-                borderTop: "1px solid #ddd",
-                fontWeight: "bold",
-                fontSize: 18,
-              }}
-            >
-              Total Amount: ₹{order.total}
-            </div>
-
-            <Link to="/orders" className="btn btn-primary mt-3">
+          {/* BACK BUTTON */}
+          <div style={{ marginTop: 25 }}>
+            <Link className="btn btn-primary" to="/orders">
               Back to Orders
             </Link>
           </div>
