@@ -14,8 +14,6 @@ import ProductDetails from "./pages/ProductDetails";
 import Wishlist from "./pages/Wishlist";
 import Tracking from "./pages/Tracking";
 import Addresses from "./pages/Addresses";
-
-// ✅ NEW PAYMENT PAGE IMPORT
 import Payment from "./pages/Payment";
 
 export default function App() {
