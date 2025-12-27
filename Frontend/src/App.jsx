@@ -1,5 +1,3 @@
-// src/App.jsx
-
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCart, clearCart } from "./features/cart/cartSlice";
